@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style id="compiled-css" type="text/css">
+.d0 { fill:#001D3F;}
+.d1 { fill:#002548;}
+.d2 { fill:#00284B;}
+.d3 { fill:#002D4E;}
+.d4 { fill:#013254;}
+.d5 { fill:#023F5F;}
+.d6 { fill:#055274;}
+.d7 { fill:#0E7997;}
+.d8 { fill:#4AB0BB;}
+.d9 { fill:#A5DCC0;}
+.d10 { fill:#D4E18F;}
+.d11 { fill:#F1D672;}
+.d12 { fill:#FFC96A;}
+.d13 { fill:#FEC562;}
+.d14 { fill:#FDC05D;}
+.d15 { fill:#F8AA59;}
+.d16 { fill:#F58B69;}
+.d17 { fill:#DC707E;}
+.d18 { fill:#974886;}
+.d19 { fill:#55287E;}
+.d20 { fill:#371D74;}
+.d21 { fill:#29236A;}
+.d22 { fill:#131E57;}
+.d23 { fill:#061A4C;}
+
+.m0  { fill: #2500DB;}
+.m1  { fill: #0067C0;}
+.m2  { fill: #0073C0;}
+.m3  { fill: #0090CB;}
+.m4  { fill: #07B9CD;}
+.m5  { fill: #3AD7A1;}
+.m6  { fill: #91DA67;}
+.m7  { fill: #D6C356;}
+.m8  { fill: #EA9956;}
+.m9  { fill: #E8615B;}
+.m10 { fill: #CC258F;}
+.m11 { fill: #7D02C8;}
+.m12 { fill: #2500DB;}
+
+
+#hour {
+    mix-blend-mode: darken;
+}
+
+#month {
+    mix-blend-mode: soft-light;
+}
+  </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="width:100%; height:100%; position: absolute; z-index: -1;">
+  <image width="100%" height="100%" href="https://static.posters.cz/image/1300/art-photo/mount-fuji-i116691.jpg" crossorgin="anonymous" preserveAspectRatio="xMaxYMax slice"></image>
+    <rect id="hour" width="100%" height="100%" fill-opacity="40%" class="d1"></rect>
+  <rect id="month" width="100%" height="100%" fill-opacity="50%" class="m3"></rect>
+</svg>
+
+
+<script type="text/javascript">//<![CDATA[
+var stop = false;
+var  fpsInterval, startTime, now, then, elapsed;
+
+var demoday = 0;
+var demomonth = 0;
+
+
+tint();
+startAnimating();
+
+function startAnimating() {
+  fpsInterval = 150;
+  then = Date.now();
+  startTime = then;
+  console.log(startTime);
+  animate();
+}
+
+function ClearClass(element) {
+  var classList = element.classList;
+  while (classList.length > 0) {
+    classList.remove(classList.item(0));
+  }
+}
+
+function tint() {
+  if (demoday++ > 23) {
+    demoday = 0;
+    demomonth++;
+  }
+  if (demomonth > 11)
+    demomonth = 0;
+
+  let current = new Date();
+  let hour = document.getElementById('hour');
+  //let hourClass = ('d' + current.getHours());
+  let hourClass = ('d' + demoday);
+  let month = document.getElementById('month');
+  //let monthClass = ('m' + current.getMonth());
+  let monthClass = ('m' + demomonth);
+  //console.log(hourClass);
+  //console.log(monthClass);
+  ClearClass(hour);
+  ClearClass(month);
+  hour.classList.add(hourClass);
+  month.classList.add(monthClass);
+}
+
+function animate() {
+  if (stop) {
+    return;
+  }
+  requestAnimationFrame(animate);
+  now = Date.now();
+  elapsed = now - then;
+  if (elapsed > fpsInterval) {
+    then = now - (elapsed % fpsInterval);
+    tint();
+  }
+}
+
+  //]]></script>
+</body></html>
